@@ -1,4 +1,8 @@
 module Main where
+import System.IO (readFile)
 
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = do
+    let words = "words.txt"
+    wordscontent <- readFile words
+    putStrLn wordscontent
