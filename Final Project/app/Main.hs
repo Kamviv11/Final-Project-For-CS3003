@@ -15,8 +15,11 @@ getRandomElement xs = do
 
 main :: IO ()
 main = do
+    --Takes in the file contents of "words.txt" and puts it into fileContent
     let file = "words.txt"
     fileContent <- readFile file
+    --Makes a list and has each element as a line of the txt file
     let wordList = lines fileContent
+    --gets a random word and puts it into randomWord
     randomWord <- getRandomElement wordList
     putStrLn randomWord
