@@ -1,6 +1,6 @@
 module Main where
-import System.IO (readFile)
-import System.Random (getStdGen, randomR)
+import System.IO ()
+import System.Random
 
 -- A function to get a random element from a list
 -- It operates within the IO monad.
@@ -11,7 +11,7 @@ getRandomElement xs = do
     -- Generate a random index. Note: list indices are 0-based.
     index <- randomRIO (0, len - 1)
     -- Return the element at the random index
-    return String(xs !! index)
+    return (xs !! index)
 
 main :: IO ()
 main = do
