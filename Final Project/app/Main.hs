@@ -1,6 +1,6 @@
 module Main where
 import System.IO (readFile)
-import System.Random ()
+import System.Random (getStdGen, randomR)
 
 main :: IO ()
 main = do
