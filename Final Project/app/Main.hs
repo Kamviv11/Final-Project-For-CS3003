@@ -1,8 +1,9 @@
 module Main where
 import System.IO (readFile)
+import System.Random ()
 
 main :: IO ()
 main = do
-    let words = "words.txt"
-    wordscontent <- readFile words
-    putStrLn wordscontent
+    let file = "words.txt"
+    fileContent <- readFile file
+    let wordList = lines fileContent
