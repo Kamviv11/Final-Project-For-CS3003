@@ -18,3 +18,5 @@ main = do
     let file = "words.txt"
     fileContent <- readFile file
     let wordList = lines fileContent
+    randomWord <- getRandomElement wordList
+    putStrLn randomWord
