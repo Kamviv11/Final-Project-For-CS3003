@@ -54,8 +54,8 @@ gameLogic answer guess_NUM =
             putStrLn "Congratulations, you won!"
         else do
             displayResult guess (isGuessCorrect answer guess)
-            putStrLn ("This is Guess " ++ show(guess_NUM) ++ "/6")
-            gameLogic answer (guess_NUM + 1)
+            putStrLn ("This is Guess " ++ show(guess_NUM + 1) ++ "/6")
+            gameLogic answer guess_NUM
 
 main :: IO ()
 main = do
