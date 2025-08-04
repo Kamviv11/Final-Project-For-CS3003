@@ -1,9 +1,8 @@
 module Main where
+
 import System.IO
 import System.Random
-import Distribution.SPDX (LicenseId(NullBSD))
 import Data.List
-import Text.Parsec (State(State))
 
 data State = Correct | Misplaced | Incorrect deriving (Eq, Show)
 
@@ -38,8 +37,8 @@ displayResult guess states = do
       formatLetter c Incorrect = "🟥" ++ [c] ++ "🟥"
 
 
-GameLogic :: String -> Int -> IO()
-GameLogic answer guess_NUM = 
+gameLogic :: String -> Int -> IO()
+gameLogic answer guess_NUM = 
     if guess_NUM == 6 then 
         putStrLn ("You lost the game! The word was " ++ answer)
     else do
@@ -49,14 +48,14 @@ GameLogic answer guess_NUM =
 
         if length guess /= length answer then do
             putStrLn "Invalid guess length. Please try again."
-            GameLogic answer guess_NUM
+            gameLogic answer guess_NUM
         else if guess == answer then do
             displayResult guess (isGuessCorrect answer guess)
             putStrLn "Congratulations, you won!"
         else do
             displayResult guess (isGuessCorrect answer guess)
             putStrLn ("This is Guess " ++ show(guess_NUM) ++ "/6")
-            GameLogic answer (guess_NUM + 1)
+            gameLogic answer (guess_NUM + 1)
 
 main :: IO ()
 main = do
@@ -68,6 +67,6 @@ main = do
     let wordList = lines fileContent
     --gets a random word and puts it into randomWord
     randomWord <- getRandomElement wordList
-    GameLogic randomWord 0
+    gameLogic randomWord 0
 
     
