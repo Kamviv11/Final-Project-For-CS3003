@@ -3,8 +3,15 @@ module Main where
 import System.IO
 import System.Random
 import Data.List
+--  The additional imports are for the second part of the project.
+--  The second part of project is to implement a letter tracker
+--  The tracker will keep track of the letters that are in the word
+--  and their positions, and will display the results in a more user-friendly way in each round. 
+import Data.Map (Map)
+import qualified Data.Map as Map
+import Data.Char (toUpper)
 
-data State = Correct | Misplaced | Incorrect deriving (Eq, Show)
+data State = Incorrect | Misplaced | Correct deriving (Eq, Show, Ord)
 
 -- A function to get a random element from a list
 -- It operates within the IO monad.
