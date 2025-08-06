@@ -10,6 +10,7 @@ import Data.List
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Char (toUpper)
+import Data.ByteString (foldl')
 
 data State = Incorrect | Misplaced | Correct deriving (Eq, Show, Ord)
 
@@ -42,6 +43,16 @@ displayResult guess states = do
       formatLetter c Correct   = "🟩" ++ [c] ++ "🟩"
       formatLetter c Misplaced = "🟨" ++ [c] ++ "🟨"
       formatLetter c Incorrect = "🟥" ++ [c] ++ "🟥"
+
+-- The additional function to elevate this game to a more user-friendly level.
+-- The keyboard state will be updated after each guess.
+updateKeyboardState :: String -> [State] -> Map Char State -> Map Char State   
+updateKeyboardState guess states oldKeyboardState =
+    let 
+        charStates = zip (map toUpper guess) states
+        update_map kbd (char, state) = Map.insertWith max char state kbd
+    in 
+        foldl' update_map oldKeyboardState charStates
 
 
 gameLogic :: String -> Int -> IO()
